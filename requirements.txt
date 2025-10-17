@@ -1,0 +1,17 @@
+# Core
+Django>=5.0,<6.0
+psycopg2-binary>=2.9
+
+# Security & PD
+django-cryptography>=1.1
+cryptography>=41.0
+
+# API (для будущего Telegram-бота)
+djangorestframework>=3.14
+
+# Utils
+python-decouple>=3.8  # безопасная загрузка .env
+django-extensions>=3.2  # удобные команды
+
+# Production
+gunicorn>=21.2
