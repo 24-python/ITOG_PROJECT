@@ -19,6 +19,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_cryptography',  # для шифрования ПДн
     'users',  # ← добавили
+    'catalog',  # ← добавили
 ]
 
 MIDDLEWARE = [
@@ -81,3 +82,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # === 152-ФЗ: Шифрование ПДн ===
 FIELD_ENCRYPTION_KEY = config('CRYPTOGRAPHY_KEY')
+
+# Используем кастомную модель пользователя
+AUTH_USER_MODEL = 'users.User'
+
+# Media files (uploaded by users)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
