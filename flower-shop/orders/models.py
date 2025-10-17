@@ -66,3 +66,9 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return f"{self.bouquet.name} × {self.quantity}"
+
+    def save(self, *args, **kwargs):
+        if not self.price_at_order and self.bouquet:
+            self.price_at_order = self.bouquet.price
+        super().save(*args, **kwargs)
+

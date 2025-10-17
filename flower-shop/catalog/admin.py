@@ -20,3 +20,5 @@ class BouquetAdmin(admin.ModelAdmin):
             'classes': ('collapse',)
         }),
     )
+    search_fields = ['name']  # ← добавь это
+
