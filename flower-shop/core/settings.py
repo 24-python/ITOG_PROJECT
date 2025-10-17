@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     'django_cryptography',  # для шифрования ПДн
     'users',  # ← добавили
     'catalog',  # ← добавили
+    'orders',  # ← добавили
 ]
 
 MIDDLEWARE = [
