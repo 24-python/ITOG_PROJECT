@@ -45,3 +45,9 @@ def order_create(request):
 
 def order_success(request, order_id):
     return render(request, 'orders/order_success.html', {'order_id': order_id})
+
+@login_required
+def order_list(request):
+    """Список заказов текущего пользователя"""
+    orders = Order.objects.filter(user=request.user).prefetch_related('items__bouquet')
+    return render(request, 'orders/order_list.html', {'orders': orders})

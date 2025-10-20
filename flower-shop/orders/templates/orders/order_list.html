@@ -1,0 +1,41 @@
+<!-- orders/templates/orders/order_list.html -->
+{% load order_extras %}  <!-- ← ЭТА СТРОКА ОБЯЗАТЕЛЬНА! -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Мои заказы</title>
+</head>
+<body>
+    <h1>Мои заказы</h1>
+
+    {% if orders %}
+        <ul>
+        {% for order in orders %}
+            <li>
+                <h3>Заказ №{{ order.id }} от {{ order.created_at|date:"d.m.Y H:i" }}</h3>
+                <p><strong>Статус:</strong> {{ order.get_status_display }}</p>
+                <p><strong>Доставка:</strong> {{ order.delivery_name }}, {{ order.delivery_time|date:"d.m.Y H:i" }}</p>
+
+                <h4>Состав заказа:</h4>
+                <ul>
+                {% for item in order.items.all %}
+                    <li>
+                        {{ item.bouquet.name }} × {{ item.quantity }}
+                        — {{ item.price_at_order }} ₽ за шт.
+                        (итого: {{ item.quantity|mul:item.price_at_order }} ₽)
+                    </li>
+                {% endfor %}
+                </ul>
+                <hr>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>У вас пока нет заказов.</p>
+    {% endif %}
+
+    <a href="/">На главную</a>
+</body>
+</html>
